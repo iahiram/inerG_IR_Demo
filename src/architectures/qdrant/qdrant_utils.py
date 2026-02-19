@@ -21,7 +21,7 @@ from configurations.app_setting import (
 )
 
 
-from client import qdrant_client, embedding_model,sparse_model,get_vectorstore
+from models.client import qdrant_client, embedding_model,sparse_model,get_vectorstore
 
 def upsert_circular_to_qdrant(json_data, collection_name: str = QDRANT_COLLECTION_NAME):
     """

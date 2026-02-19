@@ -1,5 +1,5 @@
 from qdrant_client import QdrantClient
-from configurations.app_setting import (
+from src.configurations.app_setting import (
     EMBEDDING_MODEL_NAME,
     QDRANT_URL,
     QDRANT_PORT,
@@ -23,10 +23,10 @@ import yaml
 
 logging.basicConfig(level=logging.INFO)
 
-with open('configurations/prompts.yaml', 'r') as f:
+with open('src/configurations/prompts.yaml', 'r') as f:
     prompt_data = yaml.safe_load(f)
 
-with open('main_config.yaml', 'r') as f:
+with open('src/configurations/main_config.yaml', 'r') as f:
     main_config = yaml.safe_load(f)
 
 mymemory = MemorySaver()

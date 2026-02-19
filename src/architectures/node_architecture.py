@@ -1,7 +1,7 @@
-from schemas.node_schema import AgentState
-from node import guardrail_node, data_retriever_node, answer_formulation_node
+from src.models.node_schema import AgentState
+from src.node import guardrail_node, data_retriever_node, answer_formulation_node
 from langgraph.graph import END, StateGraph
-from router import guardrail_router
+from src.router import guardrail_router
 
 node_lookup = {
     "guardrail_node": guardrail_node,

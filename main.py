@@ -1,7 +1,7 @@
-from architectures.node_architecture import MultiNodeGraphBuilder
+from src.architectures.node_architecture import MultiNodeGraphBuilder
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 import json
-from client import agent_instances, mymemory, main_config
+from src.models.client import agent_instances, mymemory, main_config
 import logging
 
 builder = MultiNodeGraphBuilder(
