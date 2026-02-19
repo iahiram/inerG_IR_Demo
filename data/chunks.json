@@ -1,0 +1,674 @@
+[
+    {
+        "page_content": "Shipping timelines are influenced by fulfillment center workload, carrier availability, payment confirmation, and seasonal demand. Orders marked as processing indicate internal validation workflows such as fraud screening, address normalization, inventory matching, and warehouse routing. This status does not represent a delay but an active verification stage. Customers often misinterpret tracking information. A generated tracking number does not confirm physical shipment because carriers frequently receive labels before pickup. Shipment visibility depends on carrier scanning events, which may be delayed during high-volume logistics periods. Delivery disruptions can occur due to environmental conditions, customs inspections, carrier backlog, or address inconsistencies. Even minor formatting errors in international addresses can delay sorting and routing. When shipment tracking shows no movement, agents should confirm warehouse dispatch status, review carrier timestamp activity, validate address accuracy, and check delivery instructions. Escalation is appropriate only after dispatch confirmation. If inactivity exceeds 48 hours, a carrier trace may be initiated to investigate transit anomalies while preventing unnecessary escalation.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec1_chunk1",
+            "section_number": "1",
+            "section_title": "Shipping & Delivery Operations",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "procedure",
+            "keywords": [
+                "shipping validation workflow",
+                "tracking number misunderstanding",
+                "carrier scan delay",
+                "shipment inactivity investigation",
+                "address normalization issue",
+                "warehouse dispatch verification"
+            ]
+        }
+    },
+    {
+        "page_content": "Lost package investigations require structured verification before replacement actions are approved. Agents must confirm the customer’s address history, validate delivery signatures, check household acceptance possibilities, and review carrier geolocation proof. These steps prevent premature loss classification. Reshipments must follow insurance and liability policy guidelines, and immediate replacements cannot be guaranteed until investigation procedures conclude. Customers frequently expect instant resolution, so agents should clearly explain investigation timelines and accountability processes. Promotional or peak-volume shipping periods commonly introduce transit delays that are operational rather than exceptional. Proactive communication reduces escalation by helping customers understand volume-related slowdowns. Clear explanation of logistics constraints improves trust and prevents repeated service contacts while maintaining policy compliance.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec1_chunk2",
+            "section_number": "1",
+            "section_title": "Shipping & Delivery Operations",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "policy",
+            "keywords": [
+                "lost package verification",
+                "carrier geolocation proof",
+                "reshipment policy rules",
+                "delivery signature validation",
+                "shipping delay communication",
+                "insurance replacement process"
+            ]
+        }
+    },
+    {
+        "page_content": "Return eligibility is determined by product classification, item condition, purchase context, and the time elapsed since delivery. Standard policy allows returns within 30 days, with exceptions for damaged items, manufacturing defects, or shipping errors. Customers often confuse return approval with refund completion. Approval confirms that the item qualifies for return, but financial reimbursement depends on backend processing stages. After approval, the return passes through warehouse intake verification, quality inspection, fraud screening, approval routing, and financial reconciliation. Each step ensures policy compliance and may introduce processing delays. Agents should clearly communicate that refund timelines reflect operational validation rather than service failure. Transparent explanation of these stages reduces escalation caused by misunderstanding the distinction between approval and settlement.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec2_chunk1",
+            "section_number": "2",
+            "section_title": "Returns and Refund Workflow",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "procedure",
+            "keywords": [
+                "return eligibility policy",
+                "refund approval vs settlement",
+                "warehouse intake verification",
+                "refund processing stages",
+                "financial reconciliation delay",
+                "return validation workflow"
+            ]
+        }
+    },
+    {
+        "page_content": "Certain product categories have restricted return eligibility to protect safety, hygiene, and inventory integrity. Items opened beyond protective seals, hygiene-sensitive goods, customized products, and clearance inventory may not qualify for standard returns. Agents must communicate these restrictions with clarity while maintaining empathy to prevent dissatisfaction. Refund timing confusion is a common escalation trigger. Internal approval may be completed quickly, but banking institutions control settlement timelines that agents cannot accelerate. Edge scenarios include partial returns from bundled purchases, damaged goods requiring photographic verification, carrier-related shipping claims, and disputes about item condition. Most escalations occur because customer expectations differ from documented policy rather than actual violations. Clear explanation of restrictions and settlement timelines improves trust and reduces repeated contact.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec2_chunk2",
+            "section_number": "2",
+            "section_title": "Returns and Refund Workflow",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "policy",
+            "keywords": [
+                "restricted return categories",
+                "refund settlement delay",
+                "bundle return edge case",
+                "damaged goods verification",
+                "return policy clarification",
+                "bank settlement timeline"
+            ]
+        }
+    },
+    {
+        "page_content": "Billing inquiries frequently arise from misunderstanding authorization holds, settlement timing, and subscription renewals. Temporary authorization holds may appear as duplicate charges, but they usually resolve automatically without manual action once settlement completes. Failed payments can occur due to expired credentials, fraud prevention blocks, gateway latency, insufficient funds, or address verification mismatches. Agents should determine whether the failure originates from the bank or payment processor before recommending corrective steps. Subscription renewals generate recurring confusion when customers forget auto-renewal enrollment. Clear billing transparency and policy-based explanation help align expectations. Customers sometimes interpret pending holds as finalized charges, so agents should use precise terminology to distinguish authorization from settlement and reduce unnecessary escalation.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec3_chunk1",
+            "section_number": "3",
+            "section_title": "Billing and Payment Handling",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "procedure",
+            "keywords": [
+                "authorization hold confusion",
+                "failed payment causes",
+                "subscription auto renewal inquiry",
+                "bank vs processor billing issue",
+                "pending charge misunderstanding",
+                "payment settlement timing"
+            ]
+        }
+    },
+    {
+        "page_content": "Charge disputes follow a structured investigation workflow designed to validate transaction accuracy. This process includes gateway log verification, transaction auditing, fraud screening, and bank reconciliation. Settlement systems operate independently, so agents must avoid promising immediate reversals or outcomes outside policy authority. Billing edge cases include partial refunds, currency conversion discrepancies, delayed settlement posting, and promotional credit application. These scenarios often appear inconsistent to customers but reflect backend financial processing rules. Consistent explanation of dispute procedures and settlement mechanics reduces confusion, prevents repeat inquiries, and maintains customer trust while ensuring policy compliance.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec3_chunk2",
+            "section_number": "3",
+            "section_title": "Billing and Payment Handling",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "policy",
+            "keywords": [
+                "billing dispute workflow",
+                "gateway transaction audit",
+                "bank reconciliation process",
+                "partial refund billing case",
+                "currency settlement discrepancy",
+                "charge reversal expectations"
+            ]
+        }
+    },
+    {
+        "page_content": "Account access problems commonly result from authentication errors, outdated credentials, or automated security triggers. Repeated failed login attempts activate protective lockouts designed to prevent unauthorized access. Identity verification is required before restoring account access, and agents must follow security protocols without exception. Password reset workflows rely on automated email delivery, so missing reset links are often caused by spam filtering, incorrect email entry, or provider delays. Suspicious activity such as login attempts from multiple geographic locations may trigger temporary security holds. These safeguards are preventative measures rather than system errors. Customers frequently misinterpret session expiration as a compromise, but it typically reflects routine security controls that protect account integrity.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec4_chunk1",
+            "section_number": "4",
+            "section_title": "Account Management and Security",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "procedure",
+            "keywords": [
+                "account lockout protection",
+                "identity verification requirement",
+                "password reset email issue",
+                "suspicious login detection",
+                "authentication failure handling",
+                "session expiration confusion"
+            ]
+        }
+    },
+    {
+        "page_content": "Common account service requests include email address updates, profile modifications, device login conflicts, and verification retries. These actions must follow identity validation rules to prevent unauthorized changes. Agents should consistently explain that security safeguards protect customer privacy and account assets. Customers may perceive restrictions as obstacles, but they are designed to reduce fraud risk. Escalation is appropriate only when identity verification repeatedly fails or system errors prevent access restoration. Clear communication about security procedures reduces frustration, aligns expectations, and prevents unnecessary escalation while maintaining compliance with account protection standards.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec4_chunk2",
+            "section_number": "4",
+            "section_title": "Account Management and Security",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "guideline",
+            "keywords": [
+                "account update verification",
+                "device login conflict handling",
+                "security safeguard explanation",
+                "identity validation escalation",
+                "profile change authorization",
+                "fraud prevention communication"
+            ]
+        }
+    },
+    {
+        "page_content": "Application problems often originate from temporary glitches or environment-specific conflicts and can usually be resolved through structured troubleshooting. Baseline corrective steps include clearing browser cache and cookies, restarting the device, reinstalling the application, updating software, and testing alternate network connections. A large portion of crash incidents are linked to outdated software versions or incompatible plugins rather than system failure. Agents should guide customers through these standardized recovery actions before assuming deeper faults. Clear sequencing of troubleshooting steps improves resolution speed, reduces unnecessary escalation, and helps isolate environmental causes affecting application stability.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec5_chunk1",
+            "section_number": "5",
+            "section_title": "Technical Troubleshooting",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "procedure",
+            "keywords": [
+                "baseline troubleshooting workflow",
+                "application crash recovery steps",
+                "software update resolution",
+                "cache clearing troubleshooting",
+                "environment conflict diagnosis",
+                "network testing procedure"
+            ]
+        }
+    },
+    {
+        "page_content": "Effective technical diagnosis requires collecting accurate environment information, including operating system details, application version, device type, and network conditions. Recurring issues should trigger log capture and escalation to engineering teams only after baseline troubleshooting confirms persistence. Customers sometimes attribute unrelated connectivity disruptions to application malfunction, so structured diagnostic questioning is essential to isolate root causes. Intermittent crashes may resolve without intervention and should not be escalated unless reproducible patterns are confirmed. Error codes must always be recorded exactly as displayed because approximate descriptions can obstruct debugging. Accurate documentation improves engineering analysis and accelerates resolution workflows.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec5_chunk2",
+            "section_number": "5",
+            "section_title": "Technical Troubleshooting",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "guideline",
+            "keywords": [
+                "technical environment data collection",
+                "log capture escalation criteria",
+                "connectivity misdiagnosis handling",
+                "intermittent crash evaluation",
+                "error code documentation",
+                "engineering escalation workflow"
+            ]
+        }
+    },
+    {
+        "page_content": "Escalation protocols are designed to preserve operational efficiency and prevent unnecessary investigation workload. Escalation should occur only when predefined triggers are met. Valid triggers include documented policy exceptions, financial disputes that exceed agent authority, safety-related concerns, and unresolved technical failures after standard troubleshooting has been completed. Agents must fully exhaust established workflows before escalating because premature escalation introduces processing delays and resource inefficiency. Proper judgment ensures escalations are reserved for cases that genuinely require higher-level intervention, improving resolution quality and preventing avoidable customer frustration.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec6_chunk1",
+            "section_number": "6",
+            "section_title": "Internal Escalation Guidelines",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "policy",
+            "keywords": [
+                "valid escalation triggers",
+                "policy exception escalation",
+                "financial dispute authority limit",
+                "technical escalation criteria",
+                "premature escalation risk",
+                "workflow exhaustion requirement"
+            ]
+        }
+    },
+    {
+        "page_content": "Every escalation must include structured documentation to ensure efficient review and resolution. Required escalation details include a timeline summary of events, actions already performed, system observations, and clearly stated customer expectations. Escalations submitted without sufficient documentation are frequently rejected, which delays resolution and increases customer dissatisfaction. Certain cases, such as partial refunds, goodwill compensation, or policy overrides, may require supervisor involvement. Clear and complete escalation notes accelerate investigation workflows, reduce back-and-forth clarification, and support faster decision-making at higher authority levels.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec6_chunk2",
+            "section_number": "6",
+            "section_title": "Internal Escalation Guidelines",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "procedure",
+            "keywords": [
+                "escalation documentation requirements",
+                "timeline summary escalation",
+                "supervisor intervention cases",
+                "policy override escalation",
+                "customer expectation reporting",
+                "escalation note standards"
+            ]
+        }
+    },
+    {
+        "page_content": "Customer perception is influenced more by communication clarity than resolution speed. Empathy combined with transparent explanation reduces dissatisfaction and builds trust. Agents should acknowledge customer frustration, provide realistic timelines, avoid guarantees that are not supported by policy, and maintain consistent terminology throughout the interaction. Poor phrasing can escalate tension even when the underlying issue is manageable. Clear, policy-aligned communication helps customers understand the situation and prevents misunderstandings that lead to repeated contact.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec7_chunk1",
+            "section_number": "7",
+            "section_title": "Customer Communication Principles",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "guideline",
+            "keywords": [
+                "empathetic communication strategy",
+                "realistic timeline explanation",
+                "policy aligned phrasing",
+                "customer frustration acknowledgment",
+                "consistent terminology usage",
+                "communication clarity impact"
+            ]
+        }
+    },
+    {
+        "page_content": "Effective customer communication relies on phrasing that reinforces clarity and expectation management. Statements that acknowledge concern while referencing system information help maintain trust, such as explaining delays with factual context. Vague assurances can increase uncertainty and escalate tension. Customers respond better when explanations are specific, transparent, and aligned with operational reality. Managing expectations through clear wording reduces repeat inquiries and strengthens customer confidence in the resolution process.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec7_chunk2",
+            "section_number": "7",
+            "section_title": "Customer Communication Principles",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "guideline",
+            "keywords": [
+                "expectation management phrasing",
+                "clear customer explanation",
+                "vague assurance risk",
+                "trust building communication",
+                "resolution transparency",
+                "customer confidence messaging"
+            ]
+        }
+    },
+    {
+        "page_content": "Customer reports that shipment tracking has not updated and questions whether the order was shipped. The correct response is to clarify the difference between label generation and carrier scan events, confirm warehouse dispatch status, and provide a realistic monitoring timeline. This explanation reassures the customer while setting accurate expectations about tracking visibility delays.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec8_chunk1",
+            "section_number": "8",
+            "section_title": "Customer Email Excerpts",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "email",
+            "keywords": [
+                "tracking update complaint",
+                "label vs carrier scan explanation",
+                "shipment dispatch confirmation",
+                "tracking delay reassurance",
+                "delivery monitoring timeline"
+            ]
+        }
+    },
+    {
+        "page_content": "Customer demands immediate refund after approval confirmation. The response should explain the distinction between internal approval and financial settlement timelines, reassure that processing is active, and provide realistic expectations regarding bank-controlled delays. Clear clarification reduces escalation caused by misunderstanding refund timing.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec8_chunk2",
+            "section_number": "8",
+            "section_title": "Customer Email Excerpts",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "email",
+            "keywords": [
+                "refund urgency complaint",
+                "approval vs settlement explanation",
+                "bank processing delay clarification",
+                "refund expectation management",
+                "financial timeline reassurance"
+            ]
+        }
+    },
+    {
+        "page_content": "Customer reports that the application crashes during login. The response should gather environment details such as device type, operating system, and app version, guide the customer through baseline troubleshooting, and escalate only if the issue persists. Structured diagnostics help isolate root causes and prevent premature escalation.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec8_chunk3",
+            "section_number": "8",
+            "section_title": "Customer Email Excerpts",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "email",
+            "keywords": [
+                "application crash complaint",
+                "environment troubleshooting data",
+                "login failure diagnostics",
+                "technical escalation criteria",
+                "app stability investigation"
+            ]
+        }
+    },
+    {
+        "page_content": "Customer questions why their account was locked despite believing no wrongdoing occurred. The response should explain that security safeguards trigger protective holds, complete identity verification, and restore access once validated. Framing the action as a safety measure reduces customer concern and reinforces account protection policies.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec8_chunk4",
+            "section_number": "8",
+            "section_title": "Customer Email Excerpts",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "email",
+            "keywords": [
+                "account lock complaint",
+                "security safeguard explanation",
+                "identity verification process",
+                "access restoration workflow",
+                "fraud protection communication"
+            ]
+        }
+    },
+    {
+        "page_content": "Customer reported refund confusion caused by a temporary bank authorization hold being interpreted as a delay or duplicate charge. The agent clarified the difference between authorization holds and settlement timing, which resolved the concern without escalation.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec9_chunk1",
+            "section_number": "9",
+            "section_title": "Agent Incident Notes",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "incident_note",
+            "keywords": [
+                "refund authorization hold confusion",
+                "bank settlement misunderstanding",
+                "duplicate charge perception",
+                "refund clarification resolution"
+            ]
+        }
+    },
+    {
+        "page_content": "Customer believed a shipment was lost due to carrier tracking inactivity. Investigation confirmed a temporary carrier backlog rather than a delivery failure. The situation was explained to the customer and resolved without escalation.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec9_chunk2",
+            "section_number": "9",
+            "section_title": "Agent Incident Notes",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "incident_note",
+            "keywords": [
+                "carrier backlog misinterpretation",
+                "lost package concern",
+                "tracking delay clarification",
+                "shipment investigation resolution"
+            ]
+        }
+    },
+    {
+        "page_content": "Customer experienced repeated application crashes during login. Diagnostic review identified an outdated operating system as the root cause. Updating the system resolved the issue without further escalation.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec9_chunk3",
+            "section_number": "9",
+            "section_title": "Agent Incident Notes",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "incident_note",
+            "keywords": [
+                "application crash root cause",
+                "outdated operating system issue",
+                "login failure troubleshooting",
+                "technical resolution update"
+            ]
+        }
+    },
+    {
+        "page_content": "Customer dissatisfaction resulted from a denied return request. The agent clarified return policy eligibility and restrictions, which helped the customer understand the decision and prevented escalation.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec9_chunk4",
+            "section_number": "9",
+            "section_title": "Agent Incident Notes",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "incident_note",
+            "keywords": [
+                "return denial clarification",
+                "policy eligibility explanation",
+                "customer dissatisfaction resolution",
+                "return policy communication"
+            ]
+        }
+    },
+    {
+        "page_content": "Customer perceived a duplicate billing charge that was actually a temporary authorization hold. The agent explained settlement mechanics, resolving the misunderstanding without additional action.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec9_chunk5",
+            "section_number": "9",
+            "section_title": "Agent Incident Notes",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "incident_note",
+            "keywords": [
+                "duplicate charge misunderstanding",
+                "authorization hold explanation",
+                "billing clarification",
+                "settlement timing education"
+            ]
+        }
+    },
+    {
+        "page_content": "Customer login failure was traced to an incorrectly entered email address. Correcting the credentials restored access without requiring escalation.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec9_chunk6",
+            "section_number": "9",
+            "section_title": "Agent Incident Notes",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "incident_note",
+            "keywords": [
+                "login credential error",
+                "incorrect email entry",
+                "account access restoration",
+                "authentication troubleshooting"
+            ]
+        }
+    },
+    {
+        "page_content": "Customer escalated a refund case due to misunderstanding settlement timelines. The agent clarified the processing stages and financial delay factors, resolving expectations and reducing escalation pressure.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec9_chunk7",
+            "section_number": "9",
+            "section_title": "Agent Incident Notes",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "incident_note",
+            "keywords": [
+                "refund timeline misunderstanding",
+                "settlement delay clarification",
+                "escalation expectation management",
+                "billing process explanation"
+            ]
+        }
+    },
+    {
+        "page_content": "Promotional purchases may include special return conditions that override the standard return window. Agents must verify the promotional policy terms before approving or denying a return to ensure compliance with campaign-specific rules.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec10_chunk1",
+            "section_number": "10",
+            "section_title": "Policy Edge Cases",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "policy",
+            "keywords": [
+                "promotional return exception",
+                "special return window policy",
+                "campaign return rules",
+                "promotion eligibility verification"
+            ]
+        }
+    },
+    {
+        "page_content": "Fraud detection flags may temporarily suspend refund processing while verification procedures are completed. Agents cannot release funds until fraud screening clears the transaction to protect financial integrity.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec10_chunk2",
+            "section_number": "10",
+            "section_title": "Policy Edge Cases",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "policy",
+            "keywords": [
+                "fraud hold refund delay",
+                "refund suspension verification",
+                "transaction fraud screening",
+                "financial integrity safeguard"
+            ]
+        }
+    },
+    {
+        "page_content": "International refund or payment settlements may vary due to currency exchange timing and financial institution processing. These fluctuations are controlled by banking systems and cannot be manually adjusted by agents.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec10_chunk3",
+            "section_number": "10",
+            "section_title": "Policy Edge Cases",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "policy",
+            "keywords": [
+                "currency exchange settlement variance",
+                "international payment fluctuation",
+                "bank controlled settlement timing",
+                "cross border refund processing"
+            ]
+        }
+    },
+    {
+        "page_content": "Partial refunds require supervisory authorization to confirm policy compliance and financial accuracy. Agents must document justification before submitting approval requests.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec10_chunk4",
+            "section_number": "10",
+            "section_title": "Policy Edge Cases",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "policy",
+            "keywords": [
+                "partial refund supervisor approval",
+                "refund authorization process",
+                "financial compliance verification",
+                "refund justification documentation"
+            ]
+        }
+    },
+    {
+        "page_content": "Insurance claims related to shipments or damages must be submitted within defined deadlines. Late submissions may invalidate coverage, so agents should verify timing requirements before initiating claims.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec10_chunk5",
+            "section_number": "10",
+            "section_title": "Policy Edge Cases",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "policy",
+            "keywords": [
+                "insurance claim deadline",
+                "shipment damage coverage timing",
+                "claim submission requirement",
+                "insurance eligibility verification"
+            ]
+        }
+    },
+    {
+        "page_content": "Bundle purchases may complicate return eligibility because partial item returns can affect pricing or promotional terms. Agents must review bundle conditions before processing refunds or exchanges.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec10_chunk6",
+            "section_number": "10",
+            "section_title": "Policy Edge Cases",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "policy",
+            "keywords": [
+                "bundle return eligibility",
+                "partial bundle refund rules",
+                "promotional pricing impact",
+                "bundle policy verification"
+            ]
+        }
+    },
+    {
+        "page_content": "Claims involving damaged goods require supporting documentation such as photographs or inspection evidence. Verification ensures accurate classification and prevents fraudulent claims.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec10_chunk7",
+            "section_number": "10",
+            "section_title": "Policy Edge Cases",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "policy",
+            "keywords": [
+                "damaged goods verification",
+                "photo evidence requirement",
+                "claim documentation policy",
+                "fraud prevention validation"
+            ]
+        }
+    },
+    {
+        "page_content": "Policy exceptions require formal written approval to ensure accountability and consistent application. Agents must not bypass documented authorization procedures.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec10_chunk8",
+            "section_number": "10",
+            "section_title": "Policy Edge Cases",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "policy",
+            "keywords": [
+                "policy exception authorization",
+                "written approval requirement",
+                "compliance enforcement",
+                "exception documentation workflow"
+            ]
+        }
+    },
+    {
+        "page_content": "Customers often interpret a lack of updates as inaction. Providing proactive status communication reduces escalation risk and reassures customers that their issue is actively being handled.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec11_chunk1",
+            "section_number": "11",
+            "section_title": "Operational Observations",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "guideline",
+            "keywords": [
+                "proactive status communication",
+                "customer silence perception",
+                "escalation prevention updates",
+                "service reassurance messaging"
+            ]
+        }
+    },
+    {
+        "page_content": "Customer dissatisfaction is frequently caused by expectation mismatch rather than operational failure. Clear explanation of processes and timelines aligns expectations and reduces complaints.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec11_chunk2",
+            "section_number": "11",
+            "section_title": "Operational Observations",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "guideline",
+            "keywords": [
+                "expectation mismatch resolution",
+                "process clarity communication",
+                "customer dissatisfaction driver",
+                "timeline explanation strategy"
+            ]
+        }
+    },
+    {
+        "page_content": "Providing clear and realistic timelines builds customer trust and minimizes uncertainty. Transparent scheduling reduces repeat inquiries and escalation pressure.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec11_chunk3",
+            "section_number": "11",
+            "section_title": "Operational Observations",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "guideline",
+            "keywords": [
+                "timeline transparency",
+                "trust building communication",
+                "uncertainty reduction messaging",
+                "customer expectation timing"
+            ]
+        }
+    },
+    {
+        "page_content": "Consistent documentation practices reduce agent error and improve workflow continuity. Accurate records support faster escalation handling and decision-making.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec11_chunk4",
+            "section_number": "11",
+            "section_title": "Operational Observations",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "guideline",
+            "keywords": [
+                "documentation consistency",
+                "agent error prevention",
+                "workflow record accuracy",
+                "escalation support logging"
+            ]
+        }
+    },
+    {
+        "page_content": "Using consistent terminology improves internal clarity and reduces miscommunication between teams. Standard language supports accurate interpretation of policies and workflows.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec11_chunk5",
+            "section_number": "11",
+            "section_title": "Operational Observations",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "guideline",
+            "keywords": [
+                "terminology standardization",
+                "internal communication clarity",
+                "policy interpretation consistency",
+                "workflow language alignment"
+            ]
+        }
+    },
+    {
+        "page_content": "Customers respond more positively to clear explanations than to apologies alone. Providing context and reasoning improves understanding and reduces frustration.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec11_chunk6",
+            "section_number": "11",
+            "section_title": "Operational Observations",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "guideline",
+            "keywords": [
+                "explanation driven communication",
+                "customer understanding strategy",
+                "frustration reduction messaging",
+                "context based reassurance"
+            ]
+        }
+    },
+    {
+        "page_content": "Most escalations originate from misunderstandings rather than actual service failures. Clear communication and expectation management reduce unnecessary escalation.",
+        "metadata": {
+            "chunk_id": "CS_doc_sec11_chunk7",
+            "section_number": "11",
+            "section_title": "Operational Observations",
+            "document_name": "Customer Service Knowledge Corpus",
+            "content_type": "guideline",
+            "keywords": [
+                "misunderstanding driven escalation",
+                "expectation management strategy",
+                "communication clarity prevention",
+                "service escalation reduction"
+            ]
+        }
+    }
+]

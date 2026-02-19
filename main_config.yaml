@@ -1,0 +1,23 @@
+node_architecture:
+  nodes:
+    - guardrail_node
+    - data_retrieval_node
+    - answer_formulation_node
+  routers:
+    - guardrail_router
+  edges:  
+    conditional_edges:
+      - source: guardrail_node
+        router: guardrail_router
+        mapping:
+          end: __END__
+          valid: data_retrieval_node
+    
+    edge:
+      - source: guardrail_node
+        destination: data_retrieval_node
+      - source: data_retrieval_node
+        destination: answer_formulation_node
+      - source: answer_formulation_node
+        destination: __END__
+  entrypoint: guardrail_node
