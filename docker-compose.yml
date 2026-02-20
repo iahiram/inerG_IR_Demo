@@ -11,5 +11,15 @@ services:
     volumes:
       - qdrant_data:/qdrant/storage
 
+  app:
+    build: .
+    container_name: app
+    ports:
+      - "8501:8501"
+    env_file:
+      - .env
+    depends_on:
+      - qdrant
+
 volumes:
   qdrant_data:
