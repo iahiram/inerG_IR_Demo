@@ -1,9 +1,16 @@
 from src.models.node_schema import AgentState
 import logging
 import json
-from src.utils import extract_query_and_sender, check_guardrail_and_expand_query,get_last_question_details,formulate_answer, get_last_guardrail_question
+from src.utils import (
+    extract_query_and_sender,
+    check_guardrail_and_expand_query,
+    get_last_question_details,
+    formulate_answer,
+    get_last_guardrail_question,
+)
 from src.qdrant.qdrant_utils import get_retrieved_data
 from langchain_core.messages import AIMessage, HumanMessage
+
 
 def guardrail_node(state: AgentState) -> AgentState:
     messages = state.get("messages")
@@ -37,38 +44,60 @@ def guardrail_node(state: AgentState) -> AgentState:
         logging.warning(
             "Query is empty. This may indicate malformed input or failed JSON parsing."
         )
-    last_formatted_question,last_answer = (
-        get_last_question_details(messages)
-    )
+    last_formatted_question, last_answer = get_last_question_details(messages)
 
     try:
-        response = check_guardrail_and_expand_query(query,last_formatted_question,last_answer)
+        response = check_guardrail_and_expand_query(
+            query, last_formatted_question, last_answer
+        )
         logging.info(f"Expanded query: {response}")
         if not response.guardrail_pass:
-            return {**state,"messages":[AIMessage(content=json.dumps({"sender": "guardrail", "response":"Guardrail check failed. Cannot proceed further."}, ensure_ascii=False),additional_kwargs={"guardrail_pass": False})]}
-        ai_msg= AIMessage(
-            content=json.dumps({"sender": "guardrail", "query": query}, ensure_ascii=False),
+            return {
+                **state,
+                "messages": [
+                    AIMessage(
+                        content=json.dumps(
+                            {
+                                "sender": "guardrail",
+                                "response": "Guardrail check failed. Cannot proceed further.",
+                            },
+                            ensure_ascii=False,
+                        ),
+                        additional_kwargs={"guardrail_pass": False},
+                    )
+                ],
+            }
+        ai_msg = AIMessage(
+            content=json.dumps(
+                {"sender": "guardrail", "query": query}, ensure_ascii=False
+            ),
             additional_kwargs={
                 "guardrail_pass": response.guardrail_pass,
                 "expanded_question": response.expanded_question,
                 "content_type": response.content_type,
-                
             },
         )
 
-        return  {**state, "messages": [ai_msg]}
+        return {**state, "messages": [ai_msg]}
     except Exception as e:
         logging.error(f"Error in guardrail node: {e}")
-        ai_msg= AIMessage(
-            content=json.dumps({"sender": "guardrail", "response":"Guardrail check failed. Cannot proceed further."}, ensure_ascii=False),
+        ai_msg = AIMessage(
+            content=json.dumps(
+                {
+                    "sender": "guardrail",
+                    "response": "Guardrail check failed. Cannot proceed further.",
+                },
+                ensure_ascii=False,
+            ),
             additional_kwargs={
                 "guardrail_pass": False,
                 "expanded_question": "",
                 "content_type": "",
-                
             },
         )
-        return  {**state, "messages": [ai_msg]}
+        return {**state, "messages": [ai_msg]}
+
+
 def data_retriever_node(state: AgentState) -> AgentState:
     messages = state.get("messages")
     if not messages:
@@ -76,56 +105,98 @@ def data_retriever_node(state: AgentState) -> AgentState:
     try:
         last_msg = messages[-1]
 
-        query,content_type = last_msg.additional_kwargs.get("expanded_question",""), last_msg.additional_kwargs.get("content_type","")
-        logging.info(f"Data retriever received query: {query} with content type: {content_type}")
+        query, content_type = (
+            last_msg.additional_kwargs.get("expanded_question", ""),
+            last_msg.additional_kwargs.get("content_type", ""),
+        )
+        logging.info(
+            f"Data retriever received query: {query} with content type: {content_type}"
+        )
     except Exception as e:
         logging.error(f"Error extracting query and content type: {e}")
-        ai_msg= AIMessage(
-        content=json.dumps({"sender": "data_retriever", "retrieved_data": "" }, ensure_ascii=False),)
-        return  {**state, "messages": [ai_msg]}
+        ai_msg = AIMessage(
+            content=json.dumps(
+                {"sender": "data_retriever", "retrieved_data": ""}, ensure_ascii=False
+            ),
+        )
+        return {**state, "messages": [ai_msg]}
     try:
-        data=""    
-        retrieved_data=get_retrieved_data(query,content_type)
-        logging.info(f"Retrieved data:")
-        for doc,score in retrieved_data:
-            logging.info(f"Document content: {doc.page_content}, Metadata: {doc.metadata}, Score: {score}")
-            logging.info("-" * 50)  
-        
-        final = "\n".join(
-                    [doc.page_content + f" Metadata: {str(doc.metadata)} Score: {score}" 
-                    for doc, score in retrieved_data 
-                    if score >= 0.5]
-                )
+        retrieved_data = get_retrieved_data(query, content_type)
+        logging.info("Retrieved data:")
+        for doc, score in retrieved_data:
+            logging.info(
+                f"Document content: {doc.page_content}, Metadata: {doc.metadata}, Score: {score}"
+            )
+            logging.info("-" * 50)
 
-        ai_msg= AIMessage(
-        content=json.dumps({"sender": "data_retriever", "retrieved_data": final }, ensure_ascii=False),)
+        retrieved_info = [
+            {"content": doc.page_content, "metadata": doc.metadata, "score": score}
+            for doc, score in retrieved_data
+            if score >= 0.1
+        ]
+
+        ai_msg = AIMessage(
+            content=json.dumps(
+                {"sender": "data_retriever", "retrieved_data": retrieved_info},
+                ensure_ascii=False,
+            ),
+        )
     except Exception as e:
         logging.error(f"Error retrieving data: {e}")
-        ai_msg= AIMessage(
-        content=json.dumps({"sender": "data_retriever", "retrieved_data": "" }, ensure_ascii=False),)
-    return  {**state, "messages": [ai_msg]}
-    
+        ai_msg = AIMessage(
+            content=json.dumps(
+                {"sender": "data_retriever", "retrieved_data": []}, ensure_ascii=False
+            ),
+        )
+    return {**state, "messages": [ai_msg]}
+
+
 def answer_formulation_node(state: AgentState) -> AgentState:
-    messages= state.get("messages")
+    messages = state.get("messages")
     if not messages:
         raise ValueError("State is empty")
     last_msg = messages[-1]
     try:
-        retrieved_data = json.loads(last_msg.content).get("retrieved_data","")
+        retrieved_data_list = json.loads(last_msg.content).get("retrieved_data", [])
     except Exception as e:
         logging.error(f"Error parsing retrieved data: {e}")
-        retrieved_data=""
-    query=get_last_guardrail_question(messages)
-    logging.info(f"Answer formulation received retrieved data: {retrieved_data}")
+        retrieved_data_list = []
+
+    # Format the list into a single string for the prompt
+    retrieved_data_prompt = "\n\n".join(
+        [
+            f"Source: {item['metadata'].get('chunk_id', 'Unknown')}\nContent: {item['content']}"
+            for item in retrieved_data_list
+        ]
+    )
+
+    query = get_last_guardrail_question(messages)
+    logging.info(f"Answer formulation received {len(retrieved_data_list)} items")
     try:
-        answer =  formulate_answer(query,retrieved_data)
+        answer = formulate_answer(query, retrieved_data_prompt)
         logging.info(f"Formulated answer: {answer}")
-        ai_msg= AIMessage(
-            content=json.dumps({"sender": "answer_formulation", "response": answer.answer,"retrieved_data_used": retrieved_data}, ensure_ascii=False),)
-            
-        return  {**state, "messages": [ai_msg]}
+        ai_msg = AIMessage(
+            content=json.dumps(
+                {
+                    "sender": "answer_formulation",
+                    "response": answer.answer,
+                    "retrieved_data_used": retrieved_data_list,
+                },
+                ensure_ascii=False,
+            ),
+        )
+
+        return {**state, "messages": [ai_msg]}
     except Exception as e:
         logging.error(f"Error formulating answer: {e}")
-        ai_msg= AIMessage(
-            content=json.dumps({"sender": "answer_formulation", "response": "Sorry, I encountered an error while formulating the answer.", "retrieved_data_used": retrieved_data}, ensure_ascii=False),)
-        return  {**state, "messages": [ai_msg]}
+        ai_msg = AIMessage(
+            content=json.dumps(
+                {
+                    "sender": "answer_formulation",
+                    "response": "Sorry, I encountered an error while formulating the answer.",
+                    "retrieved_data_used": retrieved_data_list,
+                },
+                ensure_ascii=False,
+            ),
+        )
+        return {**state, "messages": [ai_msg]}

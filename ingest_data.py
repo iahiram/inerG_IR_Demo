@@ -16,30 +16,36 @@ from qdrant_client.http.models import (
     FieldCondition,
     MatchValue,
 )
-from configurations.app_setting import (
+from src.configurations.app_setting import (
     QDRANT_COLLECTION_NAME,
-    
 )
 
 
-from models.client import qdrant_client, embedding_model,sparse_model
+from src.models.client import qdrant_client, embedding_model, sparse_model
 
-def upsert_circular_to_qdrant(json_data_1, collection_name: str =QDRANT_COLLECTION_NAME):
+
+def upsert_circular_to_qdrant(
+    json_data_1, collection_name: str = QDRANT_COLLECTION_NAME
+):
     """
-    Upserts a single circular entry (question/answer) to Qdrant.
+    Upserts to Qdrant.
     """
     logging.info(type(json_data_1))
     # logging.info(f"Starting upsert for circular number: {json_data_1['metadata']['circular_number']} page: {json_data_1['metadata']['page']}")
     if not qdrant_client.collection_exists(collection_name):
         try:
-            logging.info(f"Collection '{collection_name}' does not exist. Attempting to create it.")
+            logging.info(
+                f"Collection '{collection_name}' does not exist. Attempting to create it."
+            )
             # Get embedding dimension
             test_embedding = embedding_model.embed_query("test")
             vector_size = len(test_embedding)
             qdrant_client.create_collection(
                 collection_name=collection_name,
                 vectors_config={
-                    "dense_vector": VectorParams(size=vector_size, distance=Distance.COSINE),
+                    "dense_vector": VectorParams(
+                        size=vector_size, distance=Distance.COSINE
+                    ),
                 },
                 sparse_vectors_config={
                     "sparse_vector": SparseVectorParams(
@@ -48,7 +54,9 @@ def upsert_circular_to_qdrant(json_data_1, collection_name: str =QDRANT_COLLECTI
                     )
                 },
             )
-            logging.info(f"Created collection '{collection_name}' with vector size {vector_size}")
+            logging.info(
+                f"Created collection '{collection_name}' with vector size {vector_size}"
+            )
         except Exception as e:
             logging.warning(f"Collection creation failed (might exist): {e}")
 
@@ -69,26 +77,23 @@ def upsert_circular_to_qdrant(json_data_1, collection_name: str =QDRANT_COLLECTI
             )
 
             if duplicate_check:
-                logging.info(
-                    f"Duplicate circular found "
-                )
-                
+                logging.info("Duplicate  found ")
 
         except Exception as e:
             logging.error(f"Error checking for duplicates: {e}")
             pass
 
-
         try:
             # Create a deterministic ID based on content
-            logging.info(f"Generating point ID for circular number")
+            logging.info("Generating point ID ")
             point_id = str(
                 uuid.UUID(
-                    bytes=hashlib.md5(json_data["page_content"].encode("utf-8")).digest()
+                    bytes=hashlib.md5(
+                        json_data["page_content"].encode("utf-8")
+                    ).digest()
                 )
             )
             dense_vector_values = embedding_model.embed_query(json_data["page_content"])
-
 
             # Sparse embedding
             sparse_result = sparse_model.embed_query(json_data["page_content"])
@@ -96,7 +101,7 @@ def upsert_circular_to_qdrant(json_data_1, collection_name: str =QDRANT_COLLECTI
                 "indices": sparse_result.indices,
                 "values": sparse_result.values,
             }
-            logging.info(f"Generated point ID: {point_id} for circular number")
+            logging.info(f"Generated point ID: {point_id} ")
             point = PointStruct(
                 id=point_id,
                 vector={
@@ -110,19 +115,21 @@ def upsert_circular_to_qdrant(json_data_1, collection_name: str =QDRANT_COLLECTI
             )
 
             # 5. Upsert
-            logging.info(f"Upserting point ID: {point_id} to collection '{collection_name}' ")
-            qdrant_client.upsert(collection_name=collection_name, points=[point], wait=True)
+            logging.info(
+                f"Upserting point ID: {point_id} to collection '{collection_name}' "
+            )
+            qdrant_client.upsert(
+                collection_name=collection_name, points=[point], wait=True
+            )
             logging.info(f"Successfully upserted point {point_id} to Qdrant.")
 
         except Exception as e:
             logging.error(f"Error processing/upserting item to Qdrant: {e}")
 
-json_data=json.load(open("/home/jarvis/inerg_demo/data/chunks.json"))
 
-
-
-
-
+json_data = json.load(
+    open("/home/abhiram/Desktop/personal/inerG_IR_Demo/src/data/chunks.json")
+)
 
 
 upsert_circular_to_qdrant(json_data_1=json_data)
