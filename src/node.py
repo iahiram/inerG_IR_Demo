@@ -41,22 +41,34 @@ def guardrail_node(state: AgentState) -> AgentState:
         get_last_question_details(messages)
     )
 
-    response = check_guardrail_and_expand_query(query,last_formatted_question,last_answer)
-    logging.info(f"Expanded query: {response}")
-    if not response.guardrail_pass:
-        return {**state,"messages":[AIMessage(sender="guardrail",response="Guardrail check failed. Cannot proceed further.",additional_kwargs={"guardrail_pass": False})]}
-    ai_msg= AIMessage(
-        content=json.dumps({"sender": "guardrail", "query": query}, ensure_ascii=False),
-        additional_kwargs={
-            "guardrail_pass": response.guardrail_pass,
-            "expanded_question": response.expanded_question,
-            "content_type": response.content_type,
-            
-        },
-    )
+    try:
+        response = check_guardrail_and_expand_query(query,last_formatted_question,last_answer)
+        logging.info(f"Expanded query: {response}")
+        if not response.guardrail_pass:
+            return {**state,"messages":[AIMessage(content=json.dumps({"sender": "guardrail", "response":"Guardrail check failed. Cannot proceed further."}, ensure_ascii=False),additional_kwargs={"guardrail_pass": False})]}
+        ai_msg= AIMessage(
+            content=json.dumps({"sender": "guardrail", "query": query}, ensure_ascii=False),
+            additional_kwargs={
+                "guardrail_pass": response.guardrail_pass,
+                "expanded_question": response.expanded_question,
+                "content_type": response.content_type,
+                
+            },
+        )
 
-    return  {**state, "messages": [ai_msg]}
-
+        return  {**state, "messages": [ai_msg]}
+    except Exception as e:
+        logging.error(f"Error in guardrail node: {e}")
+        ai_msg= AIMessage(
+            content=json.dumps({"sender": "guardrail", "response":"Guardrail check failed. Cannot proceed further."}, ensure_ascii=False),
+            additional_kwargs={
+                "guardrail_pass": False,
+                "expanded_question": "",
+                "content_type": "",
+                
+            },
+        )
+        return  {**state, "messages": [ai_msg]}
 def data_retriever_node(state: AgentState) -> AgentState:
     messages = state.get("messages")
     if not messages:
@@ -82,7 +94,7 @@ def data_retriever_node(state: AgentState) -> AgentState:
         final = "\n".join(
                     [doc.page_content + f" Metadata: {str(doc.metadata)} Score: {score}" 
                     for doc, score in retrieved_data 
-                    if score > 0.5]
+                    if score >= 0.5]
                 )
 
         ai_msg= AIMessage(
@@ -98,12 +110,22 @@ def answer_formulation_node(state: AgentState) -> AgentState:
     if not messages:
         raise ValueError("State is empty")
     last_msg = messages[-1]
-    retrieved_data = json.loads(last_msg.content).get("retrieved_data","")
+    try:
+        retrieved_data = json.loads(last_msg.content).get("retrieved_data","")
+    except Exception as e:
+        logging.error(f"Error parsing retrieved data: {e}")
+        retrieved_data=""
     query=get_last_guardrail_question(messages)
     logging.info(f"Answer formulation received retrieved data: {retrieved_data}")
-    answer =  formulate_answer(query,retrieved_data)
-    logging.info(f"Formulated answer: {answer}")
-    ai_msg= AIMessage(
-        content=json.dumps({"sender": "answer_formulation", "response": answer.answer,"retrieved_data_used": retrieved_data}, ensure_ascii=False),)
-        
-    return  {**state, "messages": [ai_msg]}
+    try:
+        answer =  formulate_answer(query,retrieved_data)
+        logging.info(f"Formulated answer: {answer}")
+        ai_msg= AIMessage(
+            content=json.dumps({"sender": "answer_formulation", "response": answer.answer,"retrieved_data_used": retrieved_data}, ensure_ascii=False),)
+            
+        return  {**state, "messages": [ai_msg]}
+    except Exception as e:
+        logging.error(f"Error formulating answer: {e}")
+        ai_msg= AIMessage(
+            content=json.dumps({"sender": "answer_formulation", "response": "Sorry, I encountered an error while formulating the answer.", "retrieved_data_used": retrieved_data}, ensure_ascii=False),)
+        return  {**state, "messages": [ai_msg]}

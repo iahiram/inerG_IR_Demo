@@ -14,8 +14,6 @@ node_architecture:
           valid: data_retrieval_node
     
     edge:
-      - source: guardrail_node
-        destination: data_retrieval_node
       - source: data_retrieval_node
         destination: answer_formulation_node
       - source: answer_formulation_node
