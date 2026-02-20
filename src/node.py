@@ -80,7 +80,7 @@ def data_retriever_node(state: AgentState) -> AgentState:
             logging.info("-" * 50)  
         
         final = "\n".join(
-                    [doc.page_content + f" Metadata: {str(doc.metadata)}" 
+                    [doc.page_content + f" Metadata: {str(doc.metadata)} Score: {score}" 
                     for doc, score in retrieved_data 
                     if score > 0.5]
                 )
@@ -104,5 +104,6 @@ def answer_formulation_node(state: AgentState) -> AgentState:
     answer =  formulate_answer(query,retrieved_data)
     logging.info(f"Formulated answer: {answer}")
     ai_msg= AIMessage(
-        content=json.dumps({"sender": "answer_formulation", "response": answer.answer}, ensure_ascii=False),)
+        content=json.dumps({"sender": "answer_formulation", "response": answer.answer,"retrieved_data_used": retrieved_data}, ensure_ascii=False),)
+        
     return  {**state, "messages": [ai_msg]}

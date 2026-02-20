@@ -20,4 +20,5 @@ GEMINI_MAX_TOKENS = int(os.getenv("GEMINI_MAX_TOKENS", 2048))
 GEMINI_TIMEOUT = int(os.getenv("GEMINI_TIMEOUT", 10))
 GEMINI_MAX_RETRIES = int(os.getenv("GEMINI_MAX_RETRIES", 2))
 
-
+TOP_K = int(os.getenv("TOP_K", 5))
+USE_RERANKER=bool(os.getenv("USE_RERANKER", True))

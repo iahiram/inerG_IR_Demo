@@ -16,7 +16,7 @@ from qdrant_client.http.models import (
     MatchValue,
 )
 from src.configurations.app_setting import (
-    QDRANT_COLLECTION_NAME,
+    QDRANT_COLLECTION_NAME,TOP_K, USE_RERANKER
     
 )
 
@@ -25,9 +25,9 @@ from src.models.client import qdrant_client, embedding_model,sparse_model,get_ve
 
 def upsert_circular_to_qdrant(json_data, collection_name: str = QDRANT_COLLECTION_NAME):
     """
-    Upserts a single circular entry (question/answer) to Qdrant.
+    Upserts data to Qdrant.
     """
-    logging.info(f"Starting upsert for circular number: {json_data['metadata']['circular_number']} page: {json_data['metadata']['page']}")
+    logging.info(f"Starting upsert process")
     if not qdrant_client.collection_exists(collection_name):
         try:
             logging.info(f"Collection '{collection_name}' does not exist. Attempting to create it.")
@@ -52,7 +52,7 @@ def upsert_circular_to_qdrant(json_data, collection_name: str = QDRANT_COLLECTIO
 
     
     try:
-        logging.info(f"Checking for duplicates in collection '{collection_name}' for circular number: {json_data['metadata']['circular_number']} page: {json_data['metadata']['page']}")
+        logging.info(f"Checking for duplicates in collection")
         duplicate_check, _ = qdrant_client.scroll(
             collection_name=collection_name,
             scroll_filter=Filter(
@@ -68,7 +68,7 @@ def upsert_circular_to_qdrant(json_data, collection_name: str = QDRANT_COLLECTIO
 
         if duplicate_check:
             logging.info(
-                f"Duplicate circular found for circular number: {json_data['metadata']['circular_number']} page: {json_data['metadata']['page']}... Overwriting existing entry."
+                f"Duplicate Found ... Overwriting existing entry."
             )
             
 
@@ -79,7 +79,7 @@ def upsert_circular_to_qdrant(json_data, collection_name: str = QDRANT_COLLECTIO
 
     try:
         # Create a deterministic ID based on content
-        logging.info(f"Generating point ID for circular number: {json_data['metadata']['circular_number']} page: {json_data['metadata']['page']}")
+        logging.info(f"Generating point ID ")
         point_id = str(
             uuid.UUID(
                 bytes=hashlib.md5(json_data["page_content"].encode("utf-8")).digest()
@@ -94,7 +94,7 @@ def upsert_circular_to_qdrant(json_data, collection_name: str = QDRANT_COLLECTIO
             "indices": sparse_result.indices,
             "values": sparse_result.values,
         }
-        logging.info(f"Generated point ID: {point_id} for circular number: {json_data['metadata']['circular_number']} page: {json_data['metadata']['page']}")
+        logging.info(f"Generated point ID: {point_id}")
         point = PointStruct(
             id=point_id,
             vector={
@@ -108,7 +108,7 @@ def upsert_circular_to_qdrant(json_data, collection_name: str = QDRANT_COLLECTIO
         )
 
         # 5. Upsert
-        logging.info(f"Upserting point ID: {point_id} to collection '{collection_name}' for circular number: {json_data['metadata']['circular_number']} page: {json_data['metadata']['page']}")
+        logging.info(f"Upserting point ID: {point_id} to collection '{collection_name}'")
         qdrant_client.upsert(collection_name=collection_name, points=[point], wait=True)
         logging.info(f"Successfully upserted point {point_id} to Qdrant.")
 
@@ -137,9 +137,11 @@ def get_retrieved_data(query,content_type):
         retrieved_points  = vectorstore.similarity_search_with_score(
             query=query,
             filter=q_filter,
-            k=5
+            k=TOP_K
         )
-
+        if  USE_RERANKER:
+            logging.info("Reranking enabled: Performing reranking of retrieved points")
+            ...#TODO
 
         logging.info(f"Retrieved {len(retrieved_points)} points from Qdrant for query: '{query}' with content type: '{content_type}'")
         return retrieved_points

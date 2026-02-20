@@ -1,6 +1,6 @@
 import streamlit as st
 from main import process_request
-
+import json
 st.title("Query Processor")
 
 query = st.text_input("Enter your query:")
@@ -10,6 +10,7 @@ if st.button("Process"):
     if query and message_id:
         with st.spinner("Processing..."):
             response =  process_request(query, message_id)
+
         st.success("Response:")
         st.write(response)
     else:
